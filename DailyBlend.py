@@ -138,7 +138,7 @@ def blend_Optimization():
     # Write the DataFrame to the Google Sheet
     set_with_dataframe(worksheet, res_df)
 
-    return res_df
+    #return res_df
 
-dfb = blend_Optimization()
-dfb
+blend_Optimization()
+
