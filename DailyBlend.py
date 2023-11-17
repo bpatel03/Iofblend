@@ -37,7 +37,11 @@ def blend_Optimization():
     df1 = df
     df1 = df1.dropna()
 
-    dfT = pd.read_csv('TargetQC.csv')
+    sheet_id01 = "1gW3hAaSQ-r_GQNm0rs377-yXvsSwon7WM9Hr4BjM-FE"
+    r1 = "https://docs.google.com/spreadsheets/d/{}/export?format=csv".format(sheet_id01)
+    dfT = pd.read_csv(r1)
+
+    #dfT = pd.read_csv('TargetQC.csv')
     days = dfT['Day'].tolist()
     Act_Blend_cost = dfT['Total_Cost'].tolist()
     Act_FE = dfT['FE'].tolist()
