@@ -8,12 +8,13 @@ import sys
 
 
 file_path = os.path.join(os.path.dirname(__file__), 'iofblending-82f619a347d1.json')
-credentials_file = file_path
-if not os.path.isfile(credentials_file):
-    print(f"The file {credentials_file} does not exist. Please check the path.")
-    sys.exit(1)
-
+print(f"Current directory: {os.getcwd()}")
 print(f"File path: {file_path}")
+
+if not os.path.isfile(file_path):
+    print(f"The file {file_path} does not exist. Contents of the directory:")
+    print(os.listdir(os.path.dirname(__file__)))
+    sys.exit(1)
 
 
 # Authenticate with Google Sheets
@@ -122,13 +123,18 @@ def blend_Optimization():
     # Create the DataFrame after the loop
     res_df = pd.DataFrame(res_rows, columns=['days','Act_FE','Act_SI','Act_AL','Act_LOI','Act_Blend_cost','Blend_cost','P/L'] +  ['blended_fe', 'blended_al', 'blended_si', 'blended_loi']+['Cons_' + ore + '%' for ore in ores] )
     
-    file_path = os.path.join(os.path.dirname(__file__),'iofblending-82f619a347d1.json')
-    #credentials_file = 'iofblending-82f619a347d1.json'
-    credentials_file = file_path
+    file_path = os.path.join(os.path.dirname(__file__), 'iofblending-82f619a347d1.json')
+    print(f"Current directory: {os.getcwd()}")
+    print(f"File path: {file_path}")
+    
+    if not os.path.isfile(file_path):
+        print(f"The file {file_path} does not exist. Contents of the directory:")
+        print(os.listdir(os.path.dirname(__file__)))
+        sys.exit(1)
     
     # Authenticate using the service account credentials
     scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-    credentials = ServiceAccountCredentials.from_json_keyfile_name(credentials_file, scope)
+    credentials = ServiceAccountCredentials.from_json_keyfile_name(file_path, scope)
     gc = gspread.authorize(credentials)
 
     # Open the Google Sheet by its title
