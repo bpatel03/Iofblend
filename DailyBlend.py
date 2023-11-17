@@ -159,4 +159,6 @@ def blend_Optimization():
     #return res_df
 
 blend_Optimization()
+print(f"Contents of the directory: {os.listdir(os.path.dirname(__file__))}")
+
 
