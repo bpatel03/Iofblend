@@ -120,9 +120,11 @@ def blend_Optimization():
     sh = gc.open(sheet_title)
 
     # Create a new worksheet or use an existing one
+    
     today = datetime.now()
-    date = today.strftime("%d-%b-%Y")
-    worksheet_title = "Results"+"_"+date
+    date_and_time = today.strftime("%d-%b-%Y %H:%M")
+    worksheet_title = "Results" + "_" + date_and_time
+    
     
     try:
         worksheet = sh.add_worksheet(title=worksheet_title, rows=1, cols=1)
