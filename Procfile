@@ -1,2 +1,2 @@
-worker: python Scripts/DailyBlend.py
+worker: python DailyBlend.py
 
