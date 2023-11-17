@@ -8,7 +8,8 @@ from datetime import datetime, timedelta
 
 # Authenticate with Google Sheets
 
-GDOCS_OAUTH_JSON       = 'iofblending-82f619a347d1.json'
+#GDOCS_OAUTH_JSON       = 'iofblending-82f619a347d1.json'
+GDOCS_OAUTH_JSON        = 'iofblending-27fb7c2987b3.json'
 
 # Google Docs spreadsheet name.
 GDOCS_SPREADSHEET_NAME = 'BlendRecomendation'
@@ -112,7 +113,8 @@ def blend_Optimization():
     res_df = pd.DataFrame(res_rows, columns=['days','Act_FE','Act_SI','Act_AL','Act_LOI','Act_Blend_cost','Blend_cost','P/L'] +  ['blended_fe', 'blended_al', 'blended_si', 'blended_loi']+['Cons_' + ore + '%' for ore in ores] )
     
     
-    credentials_file = 'iofblending-82f619a347d1.json'
+    #credentials_file = 'iofblending-82f619a347d1.json'
+    credentials_file = 'iofblending-27fb7c2987b3.json'
     
     # Authenticate using the service account credentials
     scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
