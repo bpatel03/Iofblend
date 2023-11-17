@@ -133,13 +133,13 @@ def blend_Optimization():
         sys.exit(1)
     
     # Authenticate using the service account credentials
-    scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-    credentials = ServiceAccountCredentials.from_json_keyfile_name(file_path, scope)
-    gc = gspread.authorize(credentials)
+    #scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+    #credentials = ServiceAccountCredentials.from_json_keyfile_name(file_path, scope)
+    #gc = gspread.authorize(credentials)
 
     # Open the Google Sheet by its title
-    sheet_title = "BlendRecomendation"  # Change this to the title of your Google Sheet
-    sh = gc.open(sheet_title)
+    #sheet_title = "BlendRecomendation"  # Change this to the title of your Google Sheet
+    #sh = gc.open(sheet_title)
 
     # Create a new worksheet or use an existing one
     
@@ -157,8 +157,8 @@ def blend_Optimization():
     set_with_dataframe(worksheet, res_df)
 
     #return res_df
-
+    print(f"Contents of the directory: {os.listdir(os.path.dirname(__file__))}")
 blend_Optimization()
-print(f"Contents of the directory: {os.listdir(os.path.dirname(__file__))}")
+
 
 
