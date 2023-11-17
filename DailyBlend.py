@@ -4,7 +4,8 @@ import gspread
 from gspread_dataframe import set_with_dataframe
 from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime, timedelta
-import os
+import sys
+
 
 file_path = os.path.join(os.path.dirname(__file__), 'iofblending-82f619a347d1.json')
 credentials_file = file_path
