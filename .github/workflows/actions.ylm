@@ -1,0 +1,45 @@
+name: Run DailyBlend.py
+
+on:
+  schedule:
+    - cron: '*/2 * * * *' # At 00:00 on Monday
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout repo content
+        uses: actions/checkout@v2.5.0 # Use the latest version
+        with:
+          fetch-depth: 0 # Fetch all history for proper git diff
+
+      - name: Setup Python
+        uses: actions/setup-python@v2.4.2 # Use the latest version
+        with:
+          python-version: '3.9.18'
+
+      - name: Install Python packages
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Execute Python script
+        env:
+          SOME_SECRET: ${{ secrets.SOME_SECRET }}
+        run: python DailyBlend.py
+
+      - name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git diff-index --quiet HEAD || git commit -m "Update logs" || true
+
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+
+       
