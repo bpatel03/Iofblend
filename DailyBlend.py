@@ -6,7 +6,13 @@ from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime, timedelta
 import os
 
-file_path = os.path.join(os.path.dirname(__file__),'iofblending-82f619a347d1.json')
+file_path = os.path.join(os.path.dirname(__file__), 'iofblending-82f619a347d1.json')
+credentials_file = file_path
+if not os.path.isfile(credentials_file):
+    print(f"The file {credentials_file} does not exist. Please check the path.")
+    sys.exit(1)
+
+print(f"File path: {file_path}")
 
 
 # Authenticate with Google Sheets
