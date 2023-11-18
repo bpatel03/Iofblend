@@ -4,23 +4,13 @@ import gspread
 from gspread_dataframe import set_with_dataframe
 from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime, timedelta
-import sys
 
-
-file_path = os.path.join(os.path.dirname(__file__), 'iofblending-82f619a347d1.json')
-print(f"Current directory: {os.getcwd()}")
-print(f"File path: {file_path}")
-
-if not os.path.isfile(file_path):
-    print(f"The file {file_path} does not exist. Contents of the directory:")
-    print(os.listdir(os.path.dirname(__file__)))
-    sys.exit(1)
 
 
 # Authenticate with Google Sheets
 
-#GDOCS_OAUTH_JSON       = 'iofblending-82f619a347d1.json'
-GDOCS_OAUTH_JSON       = file_path
+GDOCS_OAUTH_JSON       = 'iofblending-82f619a347d1.json'
+#GDOCS_OAUTH_JSON       = file_path
 
 # Google Docs spreadsheet name.
 GDOCS_SPREADSHEET_NAME = 'BlendRecomendation'
@@ -123,23 +113,17 @@ def blend_Optimization():
     # Create the DataFrame after the loop
     res_df = pd.DataFrame(res_rows, columns=['days','Act_FE','Act_SI','Act_AL','Act_LOI','Act_Blend_cost','Blend_cost','P/L'] +  ['blended_fe', 'blended_al', 'blended_si', 'blended_loi']+['Cons_' + ore + '%' for ore in ores] )
     
-    file_path = os.path.join(os.path.dirname(__file__), 'iofblending-82f619a347d1.json')
-    print(f"Current directory: {os.getcwd()}")
-    print(f"File path: {file_path}")
-    
-    if not os.path.isfile(file_path):
-        print(f"The file {file_path} does not exist. Contents of the directory:")
-        print(os.listdir(os.path.dirname(__file__)))
-        sys.exit(1)
+    file_path = 'iofblending-82f619a347d1.json'
+
     
     # Authenticate using the service account credentials
-    #scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-    #credentials = ServiceAccountCredentials.from_json_keyfile_name(file_path, scope)
-    #gc = gspread.authorize(credentials)
+    scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+    credentials = ServiceAccountCredentials.from_json_keyfile_name(file_path, scope)
+    gc = gspread.authorize(credentials)
 
     # Open the Google Sheet by its title
-    #sheet_title = "BlendRecomendation"  # Change this to the title of your Google Sheet
-    #sh = gc.open(sheet_title)
+    sheet_title = "BlendRecomendation"  # Change this to the title of your Google Sheet
+    sh = gc.open(sheet_title)
 
     # Create a new worksheet or use an existing one
     
