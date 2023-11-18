@@ -141,7 +141,6 @@ def blend_Optimization():
     set_with_dataframe(worksheet, res_df)
 
     #return res_df
-    print(f"Contents of the directory: {os.listdir(os.path.dirname(__file__))}")
 blend_Optimization()
 
 
